@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchContent } from "../../lib/contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import "./style.css";
 
 export default function About() {
   const [content, setContent] = useState(null);
@@ -9,6 +11,7 @@ export default function About() {
     const fetchData = async () => {
       try {
         const response = await fetchContent("aboutMe");
+        console.log(response[0]);
         setContent(response[0]?.fields);
       } catch (error) {
         console.error("Error fetching data from Contentful:", error);
@@ -21,25 +24,48 @@ export default function About() {
 
   return (
     <div className="about-container">
-      <h1>About Me</h1>
-      <section>
-        <h2>Presentation Text</h2>
-        <p>{content.presentationText}</p>
+      <section className="about-content">
+        <div className="about-text">
+          <h2>{content.title}</h2>
+          <div>{documentToReactComponents(content.presentation)}</div>
+        </div>
+        <div className="about-image">
+          {content.image && (
+            <img
+              src={`https:${content.image.fields.file.url}`}
+              alt={content.title}
+              width={400}
+            />
+          )}
+        </div>
       </section>
-      <section>
-        <h2>Education Information</h2>
-        <p>{content.educationInformation}</p>
+      <section className="education">
+        {Array.isArray(content.educationInformation) ? (
+          <>
+            <h4 className="headline">Educations</h4>
+            <ul>
+              {content.educationInformation.map((education, index) => (
+                <li key={index}>{education}</li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>{content.educationInformation}</p>
+        )}
       </section>
+
       <section>
-        <h2>Work Experience</h2>
-        <p>{content.workExperience}</p>
-        {content.image && (
-          <img
-            src={`https:${content.image.fields.file.url}`}
-            alt={content.title}
-            width={300}
-            height={200}
-          />
+        {Array.isArray(content.workExperience) ? (
+          <>
+            <h4 className="headline">Experiences</h4>
+            <ul>
+              {content.workExperience.map((experience, index) => (
+                <li key={index}>{experience}</li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>{content.workExperience}</p>
         )}
       </section>
     </div>

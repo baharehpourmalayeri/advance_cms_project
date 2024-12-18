@@ -1,25 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { fetchContentById } from "../../lib/contentful";
+import { useParams } from 'next/navigation'
+import { fetchContentByLink } from "../../../lib/contentful";
+import "./style.css";
+
 
 export default function ProjectSinglePage() {
   const [content, setContent] = useState([]);
-  const searchParams = useSearchParams();
+  const params = useParams();
 
 
-  const [projectId, setProjectId] = useState(null);
+  const [link, setLink] = useState(null);
 
   useEffect(() => {
-    if (searchParams.has("id")) {
-      setProjectId(searchParams.get("id"));
+    if (params.link) {
+      setLink(params.link);
     }
-  }, [searchParams]);
+  }, [params]);
 
   useEffect(() => {
-    if (projectId) {
+    if (link) {
       const fetchData = async () => {
-        const data = await fetchContentById("projectSinglePage", projectId);
+        const data = await fetchContentByLink("projectSinglePage", link);
         console.log(data);
 
         setContent(data);
@@ -27,7 +29,7 @@ export default function ProjectSinglePage() {
 
       fetchData();
     }
-  }, [projectId]);
+  }, [link]);
 
   return (
     <div className="project-single-page">
@@ -36,12 +38,14 @@ export default function ProjectSinglePage() {
           <div key={item.sys.id} className="project-single-content">
             {item.fields.image && (
               <div className="project-single-image">
-                <img
-                  src={`https:${item.fields.image[0].fields.file.url}`}
+                  {item.fields.image.map((image) => (
+                <img key={image.sys.id}
+                  src={`https:${image.fields.file.url}`}
                   alt={item.fields.title}
                   width={300}
                   height={200}
                 />
+                  ))}
               </div>
             )}
 
@@ -55,17 +59,14 @@ export default function ProjectSinglePage() {
               </div>
             )}
 
-            {item.fields.link && (
-              <div className="project-link">
+            <div className="project-link">
                 <a
-                  href={item.fields.link}
-                  target="_blank"
+                  href="/project-index"
                   rel="noopener noreferrer"
                 >
                   View Project
                 </a>
               </div>
-            )}
           </div>
         ))
       ) : (

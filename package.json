@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "contentful": "^11.3.2",
+    "@contentful/rich-text-react-renderer": "^16.0.1",
+    "bootstrap": "^5.3.3",
+    "contentful": "^11.3.3",
     "next": "15.1.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0"
   }
 }

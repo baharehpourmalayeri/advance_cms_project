@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchContent } from "../../lib/contentful";
+import "./style.css";
+
 
 export default function ProjectIndexPage() {
   const [projectIndex, setProjectIndex] = useState(null);
@@ -8,7 +10,7 @@ export default function ProjectIndexPage() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchContent("projectIndexPage");
-      setProjectIndex(data[0]); 
+      setProjectIndex(data[0]);
     };
 
     fetchData();
@@ -18,22 +20,14 @@ export default function ProjectIndexPage() {
 
   return (
     <div className="project-index">
-
-      {projectIndex.fields.image && projectIndex.fields.image.fields?.file && (
-        <img
-          src={`https:${projectIndex.fields.image.fields.file.url}`}
-          alt="Project Index Image"
-          width={600}
-          height={400}
-        />
-      )}
-
+      {projectIndex.fields.title}
+      {projectIndex.fields.description}
       {projectIndex.fields.projects && (
         <div className="projects">
           {projectIndex.fields.projects.map((project) => (
             <div key={project.sys.id} className="project-preview">
               <h2>
-                <a href={"/project-single?id=" + project.sys.id}>
+                <a href={"/project-single/" + project.fields.link}>
                   {project.fields.title}
                 </a>
               </h2>
