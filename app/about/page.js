@@ -33,6 +33,14 @@ export default function About() {
       <section>
         <h2>Work Experience</h2>
         <p>{content.workExperience}</p>
+        {content.image && (
+          <img
+            src={`https:${content.image.fields.file.url}`}
+            alt={content.title}
+            width={300}
+            height={200}
+          />
+        )}
       </section>
     </div>
   );

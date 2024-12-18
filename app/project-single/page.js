@@ -1,39 +1,75 @@
 "use client";
 import { useEffect, useState } from "react";
-import client from "../../../lib/contentful";
-import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { fetchContentById } from "../../lib/contentful";
 
-export default function ProjectDetail({ params }) {
-  const { id } = params; // Get the dynamic route parameter
-  const [project, setProject] = useState(null);
+export default function ProjectSinglePage() {
+  const [content, setContent] = useState([]);
+  const searchParams = useSearchParams();
+
+
+  const [projectId, setProjectId] = useState(null);
 
   useEffect(() => {
-    const fetchProject = async () => {
-      try {
-        const response = await client.getEntry(id);
-        setProject(response);
-      } catch (error) {
-        console.error("Error fetching project:", error);
-      }
-    };
-    fetchProject();
-  }, [id]);
+    if (searchParams.has("id")) {
+      setProjectId(searchParams.get("id"));
+    }
+  }, [searchParams]);
 
-  if (!project) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (projectId) {
+      const fetchData = async () => {
+        const data = await fetchContentById("projectSinglePage", projectId);
+        console.log(data);
+
+        setContent(data);
+      };
+
+      fetchData();
+    }
+  }, [projectId]);
 
   return (
-    <div>
-      <h1>{project.fields.title}</h1>
-      <p>{project.fields.description}</p>
-      {project.fields.image && (
-        <Image
-          src={`https:${project.fields.image.fields.file.url}`}
-          alt={project.fields.title}
-          width={600}
-          height={400}
-        />
+    <div className="project-single-page">
+      {content.length > 0 ? (
+        content.map((item) => (
+          <div key={item.sys.id} className="project-single-content">
+            {item.fields.image && (
+              <div className="project-single-image">
+                <img
+                  src={`https:${item.fields.image[0].fields.file.url}`}
+                  alt={item.fields.title}
+                  width={300}
+                  height={200}
+                />
+              </div>
+            )}
+
+            {item.fields.title && (
+              <h1 className="project-title">{item.fields.title}</h1>
+            )}
+
+            {item.fields.description && (
+              <div className="project-description">
+                <p>{item.fields.description}</p>
+              </div>
+            )}
+
+            {item.fields.link && (
+              <div className="project-link">
+                <a
+                  href={item.fields.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Project
+                </a>
+              </div>
+            )}
+          </div>
+        ))
+      ) : (
+        <p>Loading content...</p>
       )}
     </div>
   );

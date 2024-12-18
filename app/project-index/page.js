@@ -1,35 +1,57 @@
 "use client";
 import { useEffect, useState } from "react";
-import client from "../../lib/contentful";
-import Link from "next/link";
+import { fetchContent } from "../../lib/contentful";
 
-export default function Projects() {
-  const [projects, setProjects] = useState([]);
+export default function ProjectIndexPage() {
+  const [projectIndex, setProjectIndex] = useState(null);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await client.getEntries({ content_type: "project" });
-        setProjects(response.items);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
+    const fetchData = async () => {
+      const data = await fetchContent("projectIndexPage");
+      setProjectIndex(data[0]); 
     };
-    fetchProjects();
+
+    fetchData();
   }, []);
 
+  if (!projectIndex) return <p>Loading...</p>;
+
   return (
-    <div>
-      <h1>My Projects</h1>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.sys.id}>
-            <Link href={`/projects/${project.sys.id}`}>
-              {project.fields.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="project-index">
+
+      {projectIndex.fields.image && projectIndex.fields.image.fields?.file && (
+        <img
+          src={`https:${projectIndex.fields.image.fields.file.url}`}
+          alt="Project Index Image"
+          width={600}
+          height={400}
+        />
+      )}
+
+      {projectIndex.fields.projects && (
+        <div className="projects">
+          {projectIndex.fields.projects.map((project) => (
+            <div key={project.sys.id} className="project-preview">
+              <h2>
+                <a href={"/project-single?id=" + project.sys.id}>
+                  {project.fields.title}
+                </a>
+              </h2>
+              <p>{project.fields.description}</p>
+
+              {project.fields.image &&
+                project.fields.image[0]?.fields?.file && (
+                  <img
+                    src={`https:${project.fields.image[0].fields.file.url}`}
+                    alt={project.fields.title}
+                    width={300}
+                    height={200}
+                  />
+                )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
