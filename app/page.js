@@ -22,7 +22,7 @@ export default function Home() {
         {content.map((item) => (
           <div key={item.sys.id} className="content-container">
             <div className="content-left">
-              <h2>{item.fields.title}</h2>
+              <h4>{item.fields.title}</h4>
               <div>{documentToReactComponents(item.fields.description)}</div>
               <div className="button-container">
                 <a

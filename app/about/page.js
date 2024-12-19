@@ -26,7 +26,7 @@ export default function About() {
     <div className="about-container">
       <section className="about-content">
         <div className="about-text">
-          <h2>{content.title}</h2>
+          <h2 className="title">{content.title}</h2>
           <div>{documentToReactComponents(content.presentation)}</div>
         </div>
         <div className="about-image">
@@ -54,7 +54,7 @@ export default function About() {
         )}
       </section>
 
-      <section>
+      <section className="education">
         {Array.isArray(content.workExperience) ? (
           <>
             <h4 className="headline">Experiences</h4>

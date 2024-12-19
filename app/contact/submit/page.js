@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { fetchContent } from "../../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import "bootstrap/dist/css/bootstrap.min.css"; // Make sure to import Bootstrap styles
 import "./style.css";
 
 export default function ContactPage() {
@@ -23,47 +24,57 @@ export default function ContactPage() {
   if (!content) return <p>Loading...</p>;
 
   return (
-    <div className="about-container">
-      <section className="contact-content">
-        {item.fields.contactForm && (
-          <div className="contact-form">
-            <h2>{item.fields.contactForm.title}</h2>
-            <form action={item.fields.contactForm.action} method="POST">
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" required />
+    <div className="container">
+      <section className="contact-content row">
+        <div className="col-md-6">
+          {content.contactForm && (
+            <div className="contact-form">
+              <h2>{content.contactForm.title}</h2>
+              <form action={content.contactForm.action} method="POST">
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name:</label>
+                  <input type="text" id="name" name="name" className="form-control" required />
+                </div>
 
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" required />
+                <div className="mb-3">
+                  <label htmlFor="email" className="form-label">Email:</label>
+                  <input type="email" id="email" name="email" className="form-control" required />
+                </div>
 
-              <label htmlFor="message">Message:</label>
-              <textarea id="message" name="message" required></textarea>
+                <div className="mb-3">
+                  <label htmlFor="message" className="form-label">Message:</label>
+                  <textarea id="message" name="message" className="form-control" required></textarea>
+                </div>
 
-              <button type="submit">Send</button>
-            </form>
-          </div>
-        )}
-        <div className="contact-image">
+                <button type="submit" className="btn btn-primary">Send</button>
+              </form>
+            </div>
+          )}
+        </div>
+
+        <div className="col-md-6">
           {content.image && (
             <img
               src={`https:${content.image.fields.file.url}`}
               alt={content.title}
-              width={400}
+              className="img-fluid"
             />
           )}
         </div>
       </section>
+
       <section>
-        {item.fields.contactInformation && (
+        {content.contactInformation && (
           <div className="contact-info">
-            <p>{item.fields.contactInformation}</p>
+            <p>{content.contactInformation}</p>
           </div>
         )}
       </section>
 
       <section>
         <h4>Follow Me</h4>
-        <ul>
-          {item.fields.socialMedia.map((link, index) => (
+        <ul className="list-unstyled">
+          {content.socialMedia?.map((link, index) => (
             <li key={index}>
               <a href={link} target="_blank" rel="noopener noreferrer">
                 {link}
