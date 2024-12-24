@@ -1,141 +1,125 @@
 .about-container {
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin-top: 50px;
+  gap: 50px;
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1200px;
 }
 
-.about-content {
-  width: 100%;
+.about-title{
+  text-align: center;
+  font-family: 'windsong';
+  font-size: 40px;
+  font-weight: 500;
+}
+
+section {
   display: flex;
+  align-items:center;
   justify-content: space-between;
-  align-items: stretch;
-  padding: 0 20px;
+  margin-bottom: 50px;
+  padding: 20px;
 }
 
-.about-image {
-  width: 50%;
+section.reverse {
+  flex-direction: row-reverse;
+}
+
+section .about-image,
+section .education-image,
+section .experience-image {
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-right: 20px;
+  align-items:center;
+  padding: 10px;
 }
 
-.about-image img {
-  width: 100%;
-  height: auto;
+section .about-image img,
+section .education-image img,
+section .experience-image img {
+  width: 400px;
+  height: 600px;
+  object-fit: cover;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.about-text {
-  width: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+section .about-text,
+section .education-text,
+section .experience-text {
+  flex: 1;
   text-align: left;
-  margin: 0 20px 0;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-}
-.title{
-  text-align: center;
-  color: #333;
-  letter-spacing: 1px;
-  font-weight: 600;
-  margin-bottom: 10rem;
+  padding: 10px 20px;
 }
 
-h2 {
+section .about-text h2,
+section .education-text h2,
+section .experience-text h2 {
+  font-size: 1.8rem;
   color: #333;
   letter-spacing: 1px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 section p {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: #666;
-  margin-top: 50px;
-}
-
-
-.education {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: #e2e2e2;
-  padding: 30px;
-  margin: 70px auto 10px auto;
-  color: rgb(6, 7, 7);
-  width: 94%;
-}
-
-.education ul {
-  list-style: none;
-  padding: 0;
-}
-
-.education li {
-  margin-bottom: 10px;
 }
 
 .headline {
-  color: rgb(0, 0, 0);
-  font-weight: 500;
+  font-size: 1.6rem;
+  color: #444;
+}
+
+section ul {
+  padding: 0;
+  margin-top: 10px;
+}
+
+section ul li {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 5px;
 }
 
 @media (max-width: 768px) {
-  .about-content {
+  section {
     flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
+    text-align: center;
   }
 
-  .about-image {
+  section.reverse {
+    flex-direction: column;
+  }
+
+  section .about-image,
+  section .education-image,
+  section .experience-image {
     width: 100%;
     margin-bottom: 20px;
   }
 
-  .about-text {
+  section .about-text,
+  section .education-text,
+  section .experience-text {
     width: 100%;
-    text-align: center;
+    padding: 10px;
   }
+}
 
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-  }
-
-  h4 {
-    font-size: 1.3rem;
+@media (max-width: 480px) {
+  section h2 {
+    font-size: 1.6rem;
   }
 
   section p {
     font-size: 1rem;
   }
-}
 
-@media (max-width: 480px) {
-  .about-image {
-    width: 100%;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-  }
-
-  section p {
-    font-size: 0.9rem;
+  section ul li {
+    font-size: 1rem;
   }
 }

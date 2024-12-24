@@ -1,15 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from 'next/navigation'
+import { useParams } from 'next/navigation';
 import { fetchContentByLink } from "../../../lib/contentful";
 import "./style.css";
-
 
 export default function ProjectSinglePage() {
   const [content, setContent] = useState([]);
   const params = useParams();
-
-
   const [link, setLink] = useState(null);
 
   useEffect(() => {
@@ -22,11 +19,8 @@ export default function ProjectSinglePage() {
     if (link) {
       const fetchData = async () => {
         const data = await fetchContentByLink("projectSinglePage", link);
-        console.log(data);
-
         setContent(data);
       };
-
       fetchData();
     }
   }, [link]);
@@ -36,37 +30,31 @@ export default function ProjectSinglePage() {
       {content.length > 0 ? (
         content.map((item) => (
           <div key={item.sys.id} className="project-single-content">
-            {item.fields.image && (
-              <div className="project-single-image">
-                  {item.fields.image.map((image) => (
-                <img key={image.sys.id}
-                  src={`https:${image.fields.file.url}`}
-                  alt={item.fields.title}
-                  width={300}
-                  height={200}
-                />
-                  ))}
-              </div>
-            )}
+            <h1 className="project-title">{item.fields.title}</h1>
+            <div className="project-description">
+              <p>{item.fields.description}</p>
+            </div>
 
-            {item.fields.title && (
-              <h1 className="project-title">{item.fields.title}</h1>
-            )}
-
-            {item.fields.description && (
-              <div className="project-description">
-                <p>{item.fields.description}</p>
-              </div>
-            )}
+            <div className="image-collage">
+              {item.fields.image &&
+                item.fields.image.map((image) => (
+                  <div key={image.sys.id} className="image-item">
+                    <img
+                      src={`https:${image.fields.file.url}`}
+                      alt={item.fields.title}
+                    />
+                  </div>
+                ))}
+            </div>
 
             <div className="project-link">
-                <a
+             <a
                   href="/project-index"
-                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-project-index"
                 >
-                  View Project
+                  Back to Projects
                 </a>
-              </div>
+            </div>
           </div>
         ))
       ) : (

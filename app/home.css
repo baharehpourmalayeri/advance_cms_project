@@ -25,11 +25,12 @@
 
 .content-left h2 {
   margin-bottom: 30px;
+  color: 182942;
 }
 
 h1 {
   font-size: 3.5rem;
-  color: #333;
+  color: #182942;
   font-weight: 600;
 }
 
@@ -37,7 +38,7 @@ h1 {
   font-size: 1.2rem;
   font-weight: 400;
   margin-top: 20px;
-  color: #333;
+  color: #182942;
 }
 
 .content-right {
@@ -63,19 +64,19 @@ h1 {
 }
 
 .btn-linkedin {
-  background-color: #636981;
-  border: #636981;
+  background-color: #182942;
+  border: #294368;
 }
 .btn-linkedin:hover {
-  background-color: #3c4360;
+  background-color: #767e8b;
 }
 .btn-resume {
-  background-color: #636981;
-  border: #636981;
+  background-color: #182942;
+  border: #294368;
 }
 
 .btn-resume:hover {
-  background-color: #3c4360;
+  background-color: #767e8b;
 }
 
 

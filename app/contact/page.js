@@ -99,15 +99,6 @@ export default function ContactPage() {
           </ul>
         </div>
 
-        {content.image && (
-          <div className="contact-image custom-position">
-            <img
-              src={`https:${content.image.fields.file.url}`}
-              alt={content.title}
-              className="img-fluid"
-            />
-          </div>
-        )}
       </section>
     </div>
   );
