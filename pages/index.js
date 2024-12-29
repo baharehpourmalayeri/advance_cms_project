@@ -1,21 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
 import { fetchContent } from "../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import "./home.css";
+import "./css/index.css";
 
-export default function Home() {
-  const [content, setContent] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchContent("homepage");
-      setContent(data);
-    };
-
-    fetchData();
-  }, []);
-
+export default function Home({ content }) {
   return (
     <div className="main-content">
       <main className="main">
@@ -25,21 +12,10 @@ export default function Home() {
               <h4>{item.fields.title}</h4>
               <div>{documentToReactComponents(item.fields.description)}</div>
               <div className="button-container">
-                <a
-                  href="/path/to/your/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-resume"
-                >
+                <a href="/" className="btn btn-primary btn-resume">
                   Resume
                 </a>
-
-                <a
-                  href="https://www.linkedin.com/in/your-linkedin-profile"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary btn-linkedin"
-                >
+                <a href="/" className="btn btn-primary btn-linkedin">
                   LinkedIn
                 </a>
               </div>
@@ -58,4 +34,13 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const data = await fetchContent("homepage");
+  return {
+    props: {
+      content: data,
+    },
+  };
 }

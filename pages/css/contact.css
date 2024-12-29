@@ -1,0 +1,175 @@
+.contact-image {
+  width: 100%;
+  height: 31.25rem;
+  overflow: hidden;
+}
+
+.contact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-content-wrapper {
+  padding: 1.25rem;
+}
+
+.contact-description p {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #555;
+  margin: 3.125rem auto;
+}
+
+.contact-info-section {
+  margin-top: 2.5rem;
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin: 0.3125rem 0;
+}
+
+.contact-social-media {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.contact-social-media a {
+  color: #555;
+}
+
+.contact-social-media a:hover {
+  color: #898371;
+}
+
+.contact-form-section {
+  margin-top: 3.125rem;
+}
+
+.contact-form {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.contact-form .form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form .form-control {
+  border-radius: 0.25rem;
+  margin-bottom: 0.625rem;
+}
+
+.btn-contact {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-contact:hover {
+  background-color: #333;
+}
+
+@media (min-width: 1023px) {
+  .contact-form {
+    width: 40%;
+  }
+
+  .contact-description p {
+    font-size: 1.5rem;
+  }
+
+  .contact-social-media {
+    gap: 1.875rem;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .contact-form {
+    width: 60%;
+  }
+
+  .contact-description p {
+    font-size: 1.3rem;
+    margin: 2.5rem auto;
+  }
+
+  .contact-image {
+    height: 25rem;
+  }
+
+  .contact-social-media {
+    gap: 1.25rem;
+  }
+
+  .contact-form-section {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .contact-form {
+    width: 80%;
+  }
+
+  .contact-description p {
+    font-size: 1.2rem;
+    margin: 1.875rem auto;
+  }
+
+  .contact-image {
+    height: 21.875rem;
+  }
+
+  .contact-social-media {
+    flex-wrap: wrap;
+    gap: 0.9375rem;
+  }
+
+  .contact-form-section {
+    margin-top: 1.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    width: 100%;
+    padding: 0 0.625rem;
+  }
+
+  .contact-description p {
+    font-size: 1rem;
+    margin: 1.25rem auto;
+  }
+
+  .contact-image {
+    height: 18.75rem;
+  }
+
+  .contact-social-media {
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .contact-info ul li {
+    font-size: 0.9rem;
+  }
+
+  .btn-contact {
+    width: 100%;
+    padding: 0.625rem; 
+  }
+}

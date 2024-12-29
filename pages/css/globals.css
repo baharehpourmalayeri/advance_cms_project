@@ -69,6 +69,10 @@ a {
   list-style: none;
 }
 
+.nav a:active {
+  color: #0b280c;
+}
+
 h3 {
   font-family: "windsong";
 }
@@ -124,7 +128,6 @@ h3 {
 
   .content-frame {
     width: 85%;
-    padding: 1.5rem;
   }
 
   .footer {

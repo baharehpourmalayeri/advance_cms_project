@@ -2,30 +2,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.25rem; 
 }
 
 .main {
   width: 100%;
-  max-width: 1200px;
+  max-width: 75rem;
 }
 
 .content-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
 }
 
 .content-left {
   flex: 1;
-  padding: 20px;
+  padding: 1.25rem;
   max-width: 50%;
 }
 
 .content-left h2 {
-  margin-bottom: 30px;
-  color: 182942;
+  margin-bottom: 1.875rem;
+  color: #182942;
 }
 
 h1 {
@@ -37,13 +37,13 @@ h1 {
 .content-left p {
   font-size: 1.2rem;
   font-weight: 400;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   color: #182942;
 }
 
 .content-right {
   flex: 1;
-  padding: 20px;
+  padding: 1.25rem;
   max-width: 50%;
   display: flex;
   justify-content: center;
@@ -54,22 +54,24 @@ h1 {
 .image {
   max-width: 60%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .button-container {
   display: flex;
-  gap: 10px;
-  margin-top: 50px;
+  gap: 0.625rem;
+  margin-top: 3.125rem;
 }
 
 .btn-linkedin {
   background-color: #182942;
   border: #294368;
 }
+
 .btn-linkedin:hover {
   background-color: #767e8b;
 }
+
 .btn-resume {
   background-color: #182942;
   border: #294368;
@@ -79,8 +81,7 @@ h1 {
   background-color: #767e8b;
 }
 
-
-@media (min-width: 1136px) {
+@media (min-width: 1023px) {
   h1 {
     font-size: 3.5rem;
   }
@@ -98,18 +99,17 @@ h1 {
   }
 }
 
-
-@media (max-width: 1135px) and (min-width: 769px) {
+@media (max-width: 1023px) and (min-width: 769px) {
   .content-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   .content-left,
   .content-right {
     max-width: 100%;
-    padding: 10px;
+    padding: 0.625rem;
     text-align: center;
   }
 
@@ -120,11 +120,12 @@ h1 {
   h1 {
     font-size: 2.5rem;
   }
+
   .button-container {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
   }
 
   .content-left p {
@@ -132,23 +133,22 @@ h1 {
   }
 
   .image {
-    max-width: 70%;
-    margin-bottom: 20px;
+    max-width: 60%;
+    margin-bottom: 1.25rem;
   }
 }
 
-
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .content-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 1.25rem;
   }
 
   .content-left,
   .content-right {
     max-width: 100%;
-    padding: 10px;
+    padding: 0.625rem;
     text-align: center;
   }
 
@@ -165,17 +165,16 @@ h1 {
   }
 
   .image {
-    max-width: 80%;
+    max-width: 60%;
   }
 
   .button-container {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
   }
 }
-
 
 @media (max-width: 480px) {
   .content-left h2 {
@@ -192,6 +191,6 @@ h1 {
 
   .image {
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 }
