@@ -1,9 +1,26 @@
 import { fetchContent } from "../lib/contentful";
 import "./css/project-index.css";
 
-export default function ProjectIndexPage({ projectIndex }) {
+export default function ProjectIndexPage({
+  projectIndex,
+  categories,
+  selectedCategory,
+}) {
   if (!projectIndex) return <p>Loading...</p>;
 
+  const hasSelectedCategory = (categories, selectedCategory) => {
+    return categories.some((category) => category.sys.id === selectedCategory);
+  };
+
+  const filteredProjects =
+    selectedCategory === "all"
+      ? projectIndex.fields.projects
+      : projectIndex.fields.projects.filter(
+          (project) =>
+            project.fields.category &&
+            hasSelectedCategory(project.fields.category, selectedCategory)
+        );
+  console.log(filteredProjects);
   return (
     <div className="project-index">
       <header className="project-index-header">
@@ -12,9 +29,29 @@ export default function ProjectIndexPage({ projectIndex }) {
           {projectIndex.fields.description}
         </p>
       </header>
-      {projectIndex.fields.projects && (
+
+      <div className="category-filter">
+        <label htmlFor="category">Select Category:</label>
+        <select
+    id="category"
+    className="form-select"
+    value={selectedCategory}
+    onChange={(e) =>
+      (window.location.href = `?category=${e.target.value}`)
+    }
+  >
+    <option value="all">All</option>
+    {categories.map((category) => (
+      <option key={category.sys.id} value={category.sys.id}>
+        {category.fields.title}
+      </option>
+    ))}
+  </select>
+      </div>
+
+      {filteredProjects && (
         <div className="projects">
-          {projectIndex.fields.projects.map((project) => (
+          {filteredProjects.map((project) => (
             <div key={project.sys.id} className="project-preview">
               <h2>
                 <a
@@ -48,11 +85,18 @@ export default function ProjectIndexPage({ projectIndex }) {
   );
 }
 
-export async function getServerSideProps() {
-  const data = await fetchContent("projectIndexPage");
+export async function getServerSideProps({ query }) {
+  const projectData = await fetchContent("projectIndexPage");
+
+  const categoryData = await fetchContent("category");
+
+  const selectedCategory = query.category || "all";
+
   return {
     props: {
-      projectIndex: data[0] || null,
+      projectIndex: projectData[0] || null,
+      categories: categoryData || [],
+      selectedCategory,
     },
   };
 }

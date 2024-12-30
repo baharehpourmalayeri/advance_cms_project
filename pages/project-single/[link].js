@@ -26,6 +26,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function ProjectSinglePage({ content }) {
+  console.log(content)
   return (
     <div className="project-single-page">
       {content.map((item) => (
@@ -33,6 +34,7 @@ export default function ProjectSinglePage({ content }) {
           <h1 className="project-title">{item.fields.title}</h1>
           <div className="project-description">
             <p>{item.fields.description}</p>
+            <p><strong>Category:</strong>{item.fields.category[0].fields.title}</p>
           </div>
 
           <div className="image-collage">
