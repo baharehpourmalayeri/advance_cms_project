@@ -1,6 +1,5 @@
 import { fetchContent } from "../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import "./css/about.css";
 
 export default function About({ content }) {
   if (!content) return <p>Loading...</p>;
@@ -10,7 +9,7 @@ export default function About({ content }) {
   return (
     <div className="about-container">
       <h2 className="about-title">{content.title}</h2>
-      <section className="about-content">
+      <section className="about-section about-content">
         <div className="about-image">
           {images[0] && (
             <img
@@ -25,7 +24,7 @@ export default function About({ content }) {
         </div>
       </section>
 
-      <section className="education-content reverse">
+      <section className="about-section education-content reverse">
         <div className="education-image">
           {images[1] && (
             <img
@@ -49,7 +48,7 @@ export default function About({ content }) {
         </div>
       </section>
 
-      <section className="experience-content">
+      <section className="about-section experience-content">
         <div className="experience-image">
           {images[2] && (
             <img

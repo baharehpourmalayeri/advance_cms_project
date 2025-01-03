@@ -1,5 +1,4 @@
 import { fetchContent } from "../lib/contentful";
-import "./css/contact.css";
 
 export default function ContactPage({ content }) {
   if (!content) return <p>Loading...</p>;

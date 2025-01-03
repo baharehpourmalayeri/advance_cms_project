@@ -1,5 +1,4 @@
 import { fetchContent } from "../lib/contentful";
-import "./css/project-index.css";
 
 export default function ProjectIndexPage({
   projectIndex,

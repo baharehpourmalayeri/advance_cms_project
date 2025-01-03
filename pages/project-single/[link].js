@@ -1,5 +1,4 @@
 import { fetchContentByLink } from "../../lib/contentful";
-import "../css/project-single.css";
 
 export async function getServerSideProps(context) {
   const { link } = context.params;

@@ -14,7 +14,7 @@
   font-weight: 500;
 }
 
-section {
+.about-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,13 +22,13 @@ section {
   padding: 1.25rem;
 }
 
-section.reverse {
+.about-section.reverse {
   flex-direction: row-reverse;
 }
 
-section .about-image,
-section .education-image,
-section .experience-image {
+.about-section .about-image,
+.about-section .education-image,
+.about-section .experience-image {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -36,26 +36,26 @@ section .experience-image {
   padding: 0.625rem;
 }
 
-section .about-image img,
-section .education-image img,
-section .experience-image img {
+.about-section .about-image img,
+.about-section .education-image img,
+.about-section .experience-image img {
   width: 100%;
   height: auto;
   object-fit: cover;
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
-section .about-text,
-section .education-text,
-section .experience-text {
+.about-section .about-text,
+.about-section .education-text,
+.about-section .experience-text {
   flex: 1;
   text-align: left;
   padding: 0.625rem 1.25rem;
 }
 
-section .about-text h2,
-section .education-text h2,
-section .experience-text h2 {
+.about-section .about-text h2,
+.about-section .education-text h2,
+.about-section .experience-text h2 {
   font-size: 1.8rem;
   color: #333;
   letter-spacing: 0.0625rem;
@@ -63,7 +63,7 @@ section .experience-text h2 {
   margin-bottom: 0.625rem;
 }
 
-section p {
+.about-section p {
   font-size: 1.2rem;
   line-height: 1.6;
   color: #666;
@@ -74,12 +74,12 @@ section p {
   color: #444;
 }
 
-section ul {
+.about-section ul {
   padding: 0;
   margin-top: 0.625rem;
 }
 
-section ul li {
+.about-section ul li {
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 0.3125rem;
@@ -91,9 +91,9 @@ section ul li {
     padding: 2.5rem;
   }
 
-  section .about-text h2,
-  section .education-text h2,
-  section .experience-text h2 {
+  .about-section .about-text h2,
+  .about-section .education-text h2,
+  .about-section .experience-text h2 {
     font-size: 2rem;
   }
 }
@@ -103,97 +103,97 @@ section ul li {
     gap: 2.5rem;
   }
 
-  section {
+  .about-section {
     padding: 0.9375rem;
   }
 
-  section .about-text h2,
-  section .education-text h2,
-  section .experience-text h2 {
+  .about-section .about-text h2,
+  .about-section .education-text h2,
+  .about-section .experience-text h2 {
     font-size: 1.8rem;
     text-align: center;
   }
 
-  section .about-image img,
-section .education-image img,
-section .experience-image img {
+  .about-section .about-image img,
+.about-section .education-image img,
+.about-section .experience-image img {
   width: 70%;
 }
 
-  section p {
+  .about-section p {
     font-size: 1.1rem;
     text-align: center;
   }
 
-  .about-container section {
+  .about-container .about-section {
     flex-direction: column;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  section {
+  .about-section {
     flex-direction: column;
     text-align: center;
   }
 
-  .about-container section {
+  .about-container .about-section {
     flex-direction: column;
   }
 
-  section .about-image,
-  section .education-image,
-  section .experience-image {
+  .about-section .about-image,
+  .about-section .education-image,
+  .about-section .experience-image {
     width: 100%;
     margin-bottom: 1.25rem;
   }
 
-  section .about-text,
-  section .education-text,
-  section .experience-text {
+  .about-section .about-text,
+  .about-section .education-text,
+  .about-section .experience-text {
     width: 100%;
     padding: 0.625rem;
   }
 
 
-  section .about-text h2,
-  section .education-text h2,
-  section .experience-text h2 {
+  .about-section .about-text h2,
+  .about-section .education-text h2,
+  .about-section .experience-text h2 {
     font-size: 1.6rem;
   }
 
-  section p {
+  .about-section p {
     font-size: 1rem;
   }
 
-  section ul li {
+  .about-section ul li {
     font-size: 1rem;
   }
 
-  section .about-text,
-  section .education-text,
-  section .experience-text {
+  .about-section .about-text,
+  .about-section .education-text,
+  .about-section .experience-text {
     text-align: center;
   }
 
-  section ul li {
+  .about-section ul li {
     list-style: none;
   }
 }
 
 @media (max-width: 480px) {
-  section h2 {
+  .about-section h2 {
     font-size: 1.4rem;
   }
 
-  section p {
+  .about-section p {
     font-size: 0.9rem;
   }
 
-  section ul li {
+  .about-section ul li {
     font-size: 0.9rem;
   }
 
-  .about-container section {
+  .about-container .about-section {
     flex-direction: column;
   }
 }

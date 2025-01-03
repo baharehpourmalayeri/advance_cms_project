@@ -1,10 +1,9 @@
 import { fetchContent } from "../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import "./css/index.css";
 
 export default function Home({ content }) {
   return (
-    <div className="main-content">
+    <div className="main-content index-content">
       <main className="main">
         {content.map((item) => (
           <div key={item.sys.id} className="content-container">
