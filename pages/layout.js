@@ -7,7 +7,7 @@ export default function Layout({ children }) {
 
   const fetchMenu = async () => {
     try {
-      const menuData = await fetchContent("menu");
+      const menuData = await fetchContent("menu"); // Fetch menu data from Contentful
       setMenu(menuData);
     } catch (error) {
       console.error("Error fetching menu data:", error);

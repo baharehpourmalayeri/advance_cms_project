@@ -1,6 +1,7 @@
 import { fetchContent } from "../lib/contentful";
 
-export default function ContactPage({ content }) {
+// This component renders the Contact Page and receives 'content' as a prop.
+export default function ContactPage({ content }) { // Content is fetched from Contentful
   if (!content) return <p>Loading...</p>;
 
   return (
@@ -24,6 +25,7 @@ export default function ContactPage({ content }) {
           )}
           <section className="contact-form-section">
             <div className="contact-form">
+               {/* Simple contact form with Bootstrap */}
               <form method="POST">
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">

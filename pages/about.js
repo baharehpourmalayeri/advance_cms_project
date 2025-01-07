@@ -1,6 +1,7 @@
 import { fetchContent } from "../lib/contentful";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"; // Used to render rich text content from Contentful
 
+// This component renders the About Page
 export default function About({ content }) {
   if (!content) return <p>Loading...</p>;
 
@@ -20,6 +21,7 @@ export default function About({ content }) {
           )}
         </div>
         <div className="about-text">
+           {/* Render the rich text content using Contentful's rich-text-renderer */}
           <div>{documentToReactComponents(content.presentation)}</div>
         </div>
       </section>
@@ -77,8 +79,8 @@ export default function About({ content }) {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetchContent("aboutMe");
-    const content = response[0]?.fields || null;
+    const response = await fetchContent("aboutMe");   // Fetching the "aboutMe" content from Contentful
+    const content = response[0]?.fields || null; // Extract fields from the first result if available
     return { props: { content } };
   } catch (error) {
     console.error("Error fetching data from Contentful:", error);

@@ -1,6 +1,7 @@
 import { fetchContentByLink } from "../../lib/contentful";
 
 export async function getServerSideProps(context) {
+  // Extracting the 'link' parameter from the URL context
   const { link } = context.params;
 
   if (!link) {
@@ -8,7 +9,7 @@ export async function getServerSideProps(context) {
       notFound: true,
     };
   }
-
+// Fetching the content from Contentful based on the 'link' parameter
   const data = await fetchContentByLink("projectSinglePage", link);
 
   if (!data || data.length === 0) {
@@ -28,6 +29,7 @@ export default function ProjectSinglePage({ content }) {
   console.log(content)
   return (
     <div className="project-single-page">
+       {/* Looping through the content data and rendering each project item */}
       {content.map((item) => (
         <div key={item.sys.id} className="project-single-content">
           <h1 className="project-title">{item.fields.title}</h1>
@@ -38,8 +40,10 @@ export default function ProjectSinglePage({ content }) {
 
           <div className="image-collage">
             {item.fields.image &&
+             // Looping through all the images associated with the project
               item.fields.image.map((image) => (
                 <div key={image.sys.id} className="image-item">
+                  {/* Using image.sys.id as the unique key for each image to help React efficiently track and update individual items in the list. */}
                   <img
                     src={`https:${image.fields.file.url}`}
                     alt={item.fields.title}

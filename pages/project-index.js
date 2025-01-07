@@ -7,17 +7,18 @@ export default function ProjectIndexPage({
 }) {
   if (!projectIndex) return <p>Loading...</p>;
 
+  // A function to check if a selected category exists within a project’s categories
   const hasSelectedCategory = (categories, selectedCategory) => {
     return categories.some((category) => category.sys.id === selectedCategory);
   };
-
+  // Here we are filtering projects based on selected category
   const filteredProjects =
     selectedCategory === "all"
-      ? projectIndex.fields.projects
+      ? projectIndex.fields.projects // Show all projects if "all" is selected
       : projectIndex.fields.projects.filter(
           (project) =>
             project.fields.category &&
-            hasSelectedCategory(project.fields.category, selectedCategory)
+            hasSelectedCategory(project.fields.category, selectedCategory) // Checking if project’s category matches the selected category
         );
   console.log(filteredProjects);
   return (
@@ -29,27 +30,30 @@ export default function ProjectIndexPage({
         </p>
       </header>
 
+      {/* CUsing a dropdown to select a category */}
       <div className="category-filter">
         <label htmlFor="category">Select Category:</label>
         <select
-    id="category"
-    className="form-select"
-    value={selectedCategory}
-    onChange={(e) =>
-      (window.location.href = `?category=${e.target.value}`)
-    }
-  >
-    <option value="all">All</option>
-    {categories.map((category) => (
-      <option key={category.sys.id} value={category.sys.id}>
-        {category.fields.title}
-      </option>
-    ))}
-  </select>
+          id="category"
+          className="form-select"
+          value={selectedCategory}
+          onChange={
+            (e) => (window.location.href = `?category=${e.target.value}`) // Change the category by updating the URL
+          }
+        >
+          <option value="all">All</option>
+          {/* Map over categories and create an option for each */}
+          {categories.map((category) => (
+            <option key={category.sys.id} value={category.sys.id}>
+              {category.fields.title}
+            </option>
+          ))}
+        </select>
       </div>
 
       {filteredProjects && (
         <div className="projects">
+          {/* Loop through filtered projects and display them */}
           {filteredProjects.map((project) => (
             <div key={project.sys.id} className="project-preview">
               <h2>
@@ -85,10 +89,11 @@ export default function ProjectIndexPage({
 }
 
 export async function getServerSideProps({ query }) {
+  // Fetch project index page data from Contentful
   const projectData = await fetchContent("projectIndexPage");
-
+  // Fetch category data from Contentful
   const categoryData = await fetchContent("category");
-
+  // Get the selected category from the query parameters or default to "all"
   const selectedCategory = query.category || "all";
 
   return {

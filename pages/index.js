@@ -1,3 +1,4 @@
+// Importing the function to fetch content by link from Contentful
 import { fetchContent } from "../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
@@ -5,6 +6,7 @@ export default function Home({ content }) {
   return (
     <div className="main-content index-content">
       <main className="main">
+        {/* Map over content array, rendering a section for each item */}
         {content.map((item) => (
           <div key={item.sys.id} className="content-container">
             <div className="content-left">
@@ -36,7 +38,7 @@ export default function Home({ content }) {
 }
 
 export async function getServerSideProps() {
-  const data = await fetchContent("homepage");
+  const data = await fetchContent("homepage"); // Fetch content data from Contentful
   return {
     props: {
       content: data,
