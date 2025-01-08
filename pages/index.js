@@ -1,4 +1,5 @@
 // Importing the function to fetch content by link from Contentful
+import Head from "next/head";
 import { fetchContent } from "../lib/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 

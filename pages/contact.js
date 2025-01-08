@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { fetchContent } from "../lib/contentful";
 
 // This component renders the Contact Page and receives 'content' as a prop.

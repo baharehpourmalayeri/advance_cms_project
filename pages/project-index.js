@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { fetchContent } from "../lib/contentful";
 
 export default function ProjectIndexPage({

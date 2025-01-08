@@ -1,4 +1,5 @@
 import Layout from "./layout";
+import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "./css/globals.css";
