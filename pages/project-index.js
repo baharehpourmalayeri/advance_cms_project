@@ -22,69 +22,78 @@ export default function ProjectIndexPage({
         );
   console.log(filteredProjects);
   return (
-    <div className="project-index">
-      <header className="project-index-header">
-        <h1>{projectIndex.fields.title}</h1>
-        <p className="project-index-description">
-          {projectIndex.fields.description}
-        </p>
-      </header>
+    <>
+      <Head>
+        <title>Project: Bahareh's Portfolio - Projects</title>
+        <meta
+          name="description"
+          content={`Browse through a collection of my web development projects. Explore the work I've done, showcasing different technologies, design approaches, and solutions I implemented.`}
+        />
+      </Head>
+      <div className="project-index">
+        <header className="project-index-header">
+          <h1>{projectIndex.fields.title}</h1>
+          <p className="project-index-description">
+            {projectIndex.fields.description}
+          </p>
+        </header>
 
-      {/* CUsing a dropdown to select a category */}
-      <div className="category-filter">
-        <label htmlFor="category">Select Category:</label>
-        <select
-          id="category"
-          className="form-select"
-          value={selectedCategory}
-          onChange={
-            (e) => (window.location.href = `?category=${e.target.value}`) // Change the category by updating the URL
-          }
-        >
-          <option value="all">All</option>
-          {/* Map over categories and create an option for each */}
-          {categories.map((category) => (
-            <option key={category.sys.id} value={category.sys.id}>
-              {category.fields.title}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* CUsing a dropdown to select a category */}
+        <div className="category-filter">
+          <label htmlFor="category">Select Category:</label>
+          <select
+            id="category"
+            className="form-select"
+            value={selectedCategory}
+            onChange={
+              (e) => (window.location.href = `?category=${e.target.value}`) // Change the category by updating the URL
+            }
+          >
+            <option value="all">All</option>
+            {/* Map over categories and create an option for each */}
+            {categories.map((category) => (
+              <option key={category.sys.id} value={category.sys.id}>
+                {category.fields.title}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      {filteredProjects && (
-        <div className="projects">
-          {/* Loop through filtered projects and display them */}
-          {filteredProjects.map((project) => (
-            <div key={project.sys.id} className="project-preview">
-              <h2>
+        {filteredProjects && (
+          <div className="projects">
+            {/* Loop through filtered projects and display them */}
+            {filteredProjects.map((project) => (
+              <div key={project.sys.id} className="project-preview">
+                <h2>
+                  <a
+                    href={"/project-single/" + project.fields.link}
+                    className="project-link"
+                  >
+                    {project.fields.title}
+                  </a>
+                </h2>
+                <p className="project-summary">{project.fields.summary}</p>
                 <a
                   href={"/project-single/" + project.fields.link}
                   className="project-link"
                 >
-                  {project.fields.title}
+                  {project.fields.image &&
+                    project.fields.image[0]?.fields?.file && (
+                      <div className="project-image">
+                        <img
+                          src={`https:${project.fields.image[0].fields.file.url}`}
+                          alt={project.fields.title}
+                          className="project-img"
+                        />
+                      </div>
+                    )}
                 </a>
-              </h2>
-              <p className="project-summary">{project.fields.summary}</p>
-              <a
-                href={"/project-single/" + project.fields.link}
-                className="project-link"
-              >
-                {project.fields.image &&
-                  project.fields.image[0]?.fields?.file && (
-                    <div className="project-image">
-                      <img
-                        src={`https:${project.fields.image[0].fields.file.url}`}
-                        alt={project.fields.title}
-                        className="project-img"
-                      />
-                    </div>
-                  )}
-              </a>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
