@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { fetchContentByLink } from "../../lib/contentful";
 
 export async function getServerSideProps(context) {
