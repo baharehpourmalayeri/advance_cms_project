@@ -1,4 +1,4 @@
-📌 cms_portfolio_project
+📌 CMS Portfolio Project
 
 
 This project involves creating a portfolio website that fetches its data from a Headless CMS and is rendered using SSR/SSG technology. 
