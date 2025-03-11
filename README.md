@@ -4,14 +4,19 @@
 This project involves creating a portfolio website that fetches its data from a Headless CMS and is rendered using SSR/SSG technology. 
 The website is designed to be dynamic, with content that can be managed via one or more admin interfaces.
 
+This project is published and you can find it here:
+https://baharehpourmalayeri-cms-projektarbete.onrender.com
+
+
 
 🛠 Technologies Used
 
   - Headless CMS: Contentful
   - React
   - Javascript
-  - Next.js
-  -  HTML5 & CSS
+  - Next.js (For SSR-SSG rendering)
+  - HTML5 & CSS
+  - Render.com (To publish the website)
 
 
 🚀 Setup & Installation
