@@ -1,8 +1,8 @@
-📌 WordPress Theme Project
+📌 cms_portfolio_project
 
-This project involved converting static HTML files into a dynamic WordPress theme. 
 
-The goal was to maintain the original structure while implementing WordPress functionalities such as templates, menus, widgets, and a blog system.
+This project involves creating a portfolio website that fetches its data from a Headless CMS and is rendered using SSR/SSG technology. 
+The website is designed to be dynamic, with content that can be managed via one or more admin interfaces.
 
 
 🛠 Technologies Used
